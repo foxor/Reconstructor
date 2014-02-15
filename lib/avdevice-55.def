@@ -1,0 +1,7 @@
+EXPORTS
+    avdevice_app_to_dev_control_message
+    avdevice_configuration
+    avdevice_dev_to_app_control_message
+    avdevice_license
+    avdevice_register_all
+    avdevice_version
