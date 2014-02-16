@@ -2,7 +2,6 @@
 
 const GLdouble pi = 3.1415926535897932384626433832795;
 SDL_Window* displayWindow;
-SDL_Renderer* displayRenderer;
 
 void Display_Render()
 {
@@ -18,8 +17,6 @@ void Display_Render()
 	glVertex3f(1.0f, -1.0f, 0.0f);
 	glEnd();
 
-	SDL_RenderPresent(displayRenderer);
-
 	SDL_GL_SwapWindow(displayWindow);
 }
 
@@ -27,17 +24,11 @@ void Display_Render()
 int initGL(int width, int height)
 {
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_RendererInfo displayRendererInfo;
-	SDL_CreateWindowAndRenderer(width, height, SDL_WINDOW_OPENGL, &displayWindow, &displayRenderer);
+	displayWindow = SDL_CreateWindow("", 0, 0, width, height, SDL_WINDOW_OPENGL);
 	SDL_GL_CreateContext(displayWindow);
-	SDL_GetRendererInfo(displayRenderer, &displayRendererInfo);
-	if ((displayRendererInfo.flags & SDL_RENDERER_ACCELERATED) == 0 ||
-		(displayRendererInfo.flags & SDL_RENDERER_TARGETTEXTURE) == 0) {
-		return -1;
-	}
 
 	glShadeModel(GL_SMOOTH);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
