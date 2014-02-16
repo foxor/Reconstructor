@@ -150,8 +150,10 @@ loop_exit:
 	if (packet.data != NULL)
 		av_free_packet(&packet);
 
+	return frameFinished != 0;
+}
+
+void Decoder::ToRGB() {
 	// Translate frame to RGB in the buffer
 	sws_scale(conversionCtx, pFrame->data, pFrame->linesize, 0, height(), pFrameRGB->data, pFrameRGB->linesize);
-
-	return frameFinished != 0;
 }

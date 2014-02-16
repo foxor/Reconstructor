@@ -1,3 +1,6 @@
+#ifndef VIDEOTORGB
+#define VIDEOTORGB
+
 extern "C"
 {
 #include "libavcodec/avcodec.h"
@@ -21,15 +24,17 @@ protected:
 	AVCodecContext  *pCodecCtx;
 	AVCodec         *pCodec;
 	AVFrame         *pFrame;
-	AVFrame         *pFrameRGB;
 	int             numBytes;
 	SwsContext		*conversionCtx;
+	uint8_t         *buffer;
 
 public:
-	uint8_t *buffer;
+	AVFrame         *pFrameRGB;
 	Decoder(char* fName);
 	~Decoder();
 	int width();
 	int height();
 	bool nextFrame();
+	void ToRGB();
 };
+#endif

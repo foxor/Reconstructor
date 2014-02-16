@@ -1,4 +1,5 @@
 #include "RenderingContext.h"
+#include "VideoToRgb.h"
 
 RenderingContext::RenderingContext(int width, int height)
 {
@@ -6,6 +7,7 @@ RenderingContext::RenderingContext(int width, int height)
 	displayWindow = SDL_CreateWindow("", 0, 0, width, height, SDL_WINDOW_OPENGL);
 	SDL_GL_CreateContext(displayWindow);
 
+	glEnable(GL_TEXTURE_2D);
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
@@ -17,7 +19,7 @@ RenderingContext::RenderingContext(int width, int height)
 	scene->initFrustrum(width, height, pi / 8);
 }
 
-void RenderingContext::draw() {
-	scene->draw();
+void RenderingContext::draw(Decoder *decoder) {
+	scene->draw(decoder);
 	SDL_GL_SwapWindow(displayWindow);
 }

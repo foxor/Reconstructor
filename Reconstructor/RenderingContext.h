@@ -1,3 +1,6 @@
+#ifndef RENDERINGCONTEXT
+#define RENDERINGCONTEXT
+
 #include <math.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
@@ -10,5 +13,6 @@ private:
 
 public:
 	RenderingContext(int, int);
-	void draw();
+	void draw(Decoder*);
 };
+#endif

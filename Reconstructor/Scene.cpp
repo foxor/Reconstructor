@@ -1,19 +1,27 @@
 #include "Scene.h"
 
 Scene::Scene() {
+	glGenTextures(1, sourceFrame);
+	glBindTexture(GL_TEXTURE_2D, sourceFrame[0]);
 }
 
-void Scene::draw()
+void Scene::draw(Decoder *decoder)
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, decoder->width(), decoder->height(), 0, GL_RGB, GL_UNSIGNED_BYTE, decoder->pFrameRGB->data[0]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
 	glTranslatef(-1.5f, 0.0f, -6.0f);
 
 	glBegin(GL_TRIANGLES);
+	glTexCoord2f(0.0f, 1.0f);
 	glVertex3f(0.0f, 1.0f, 0.0f);
+	glTexCoord2f(1.0f, 1.0f);
 	glVertex3f(-1.0f, -1.0f, 0.0f);
+	glTexCoord2f(1.0f, 0.0f);
 	glVertex3f(1.0f, -1.0f, 0.0f);
 	glEnd();
 }
