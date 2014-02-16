@@ -1,10 +1,12 @@
 #include "VideoToRgb.h"
-#include "GlSetup.h"
+#include "RenderingContext.h"
 
 int main(int argc, char **argv){
 	Decoder* d = new Decoder("C:\\Users\\Isaac\\Code\\Reconstructor\\Debug\\testVid.mp4");
-	initGL(d->width(), d->height());
-	while (d->nextFrame());
-
+	RenderingContext* r = new RenderingContext(d->width(), d->height());
+	while (d->nextFrame()) {
+		r->draw();
+	}
+	SDL_Quit();
 	return 0;
 }

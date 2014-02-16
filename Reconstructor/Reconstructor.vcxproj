@@ -70,11 +70,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EntryPoint.cpp" />
-    <ClCompile Include="GlSetup.cpp" />
+    <ClCompile Include="RenderingContext.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="VideoToRgb.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GlSetup.h" />
+    <ClInclude Include="RenderingContext.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="VideoToRgb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

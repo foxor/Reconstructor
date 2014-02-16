@@ -24,7 +24,10 @@
     <ClCompile Include="EntryPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GlSetup.cpp">
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +35,10 @@
     <ClInclude Include="VideoToRgb.h">
       <Filter>avcodec Integration</Filter>
     </ClInclude>
-    <ClInclude Include="GlSetup.h">
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
