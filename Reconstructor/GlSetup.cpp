@@ -20,6 +20,14 @@ void Display_Render()
 	SDL_GL_SwapWindow(displayWindow);
 }
 
+void initFrustrum(GLdouble width, GLdouble height, GLdouble halfFOV) {
+	GLdouble ratio = width / height;
+	GLdouble ZNear = 0.1;
+	GLdouble ZFar = 10;
+	GLdouble rightClip = tan(halfFOV) * ZNear;
+	GLdouble topClip = rightClip * ratio;
+	glFrustum(-rightClip, rightClip, -topClip, topClip, ZNear, ZFar);
+}
 
 int initGL(int width, int height)
 {
@@ -28,29 +36,17 @@ int initGL(int width, int height)
 	SDL_GL_CreateContext(displayWindow);
 
 	glShadeModel(GL_SMOOTH);
-	glClearColor(0.0f, 0.0f, 0.0f, 1);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	GLfloat ratio;
-	if (height == 0) {
-		height = 1;
-	}
-
-	ratio = (GLfloat)width / (GLfloat)height;
 	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	GLdouble ZNear = 0.1;
-	GLdouble ZFar = 100;
-	//45 degrees = pi / 4.  Since we need left and right from 0, half that
-	GLdouble halfFOV = pi / 8;
-	GLdouble rightClip = tan(halfFOV) * ZNear;
-	GLdouble topClip = rightClip * ratio;
-	glFrustum(-rightClip, rightClip, -topClip, topClip, ZNear, ZFar);
+	initFrustrum(width, height, pi / 8);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
