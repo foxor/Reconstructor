@@ -15,8 +15,8 @@ RenderingContext::RenderingContext(int width, int height)
 
 	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
-	scene = new Scene();
-	scene->initFrustrum(width, height, pi / 8);
+	scene = new Scene(width, height);
+	scene->initFrustrum();
 }
 
 void RenderingContext::draw(Decoder *decoder) {
